@@ -1,0 +1,111 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+1	grids.f90	/^1   format(20f20.5)        $/;"	l	subroutine:make_grids	file:
+1	policy_to_mm.f90	/^        1   format(1f10.5)  $/;"	l	subroutine:mm_to_print	file:
+11	grids.f90	/^11  format(2000a)$/;"	l	subroutine:make_grids	file:
+5	solve_values.f90	/^        5 format(1500a)$/;"	l	subroutine:value_v_print	file:
+5	solve_values.f90	/^        5 format(1500a)$/;"	l	subroutine:value_v_read	file:
+51	policy_to_mm.f90	/^        51         format(A14,  8f14.5)$/;"	l	subroutine:mm_to_print	file:
+52	policy_to_mm.f90	/^        52         format(9A14)$/;"	l	subroutine:mm_to_print	file:
+52	solve_values.f90	/^        52    format(4f14.6 )     $/;"	l	subroutine:value_v_print	file:
+52	solve_values.f90	/^        52    format(4f14.6 )     $/;"	l	subroutine:value_v_read	file:
+Az	global_variables.f90	/^    real(8),parameter::   Az=/;"	v	module:global_variables_mod
+LinInterpModule	LinInterpModule.f90	/^module LinInterpModule$/;"	m
+Main_ss_cali	calibration_estimation.f90	/^subroutine  Main_ss_cali$/;"	s	module:calibration_estimation_mod
+Nindi	global_variables.f90	/^    integer,parameter::Nindi=/;"	v	module:global_variables_mod
+NumIter	global_variables.f90	/^    integer,parameter:: NumIter=/;"	v	module:global_variables_mod
+TauchenMod	tauchen_mod.f90	/^module TauchenMod$/;"	m
+TauchenTr	tauchen_mod.f90	/^subroutine TauchenTr(/;"	s	module:TauchenMod
+TimeLast	global_variables.f90	/^    integer,parameter::TimeLast=/;"	v	module:global_variables_mod
+Tran_z	global_variables.f90	/^    real(8)::kss, vec_k(nk), vec_d(nd), vec_z(nz), Tran_z(/;"	v	module:global_variables_mod
+Tran_zb	global_variables.f90	/^    real(8)::kss, vec_k(nk), vec_d(nd), vec_z(nz), Tran_z(nz,nz), vec_zb(nz_big),Tran_zb(/;"	v	module:global_variables_mod
+Tran_zb_cum	global_variables.f90	/^    real(8)::kss, vec_k(nk), vec_d(nd), vec_z(nz), Tran_z(nz,nz), vec_zb(nz_big),Tran_zb(nz_big,nz_big),Tran_zb_cum(/;"	v	module:global_variables_mod
+a_cost_k	global_variables.f90	/^    real(8),parameter::   a_cost_k=/;"	v	module:global_variables_mod
+adj_fd_k	functions.f90	/^function adj_fd_k(/;"	f	module:functions_mod
+adj_fd_kp	functions.f90	/^ function adj_fd_kp(/;"	f	module:functions_mod
+avg_I_K	global_variables.f90	/^    real(8)::avg_I_K,/;"	v	module:global_variables_mod
+avg_Q	global_variables.f90	/^    real(8)::avg_I_K, avg_income_K,avg_equity_K,avg_d_K,avg_cash_K,avg_Q$/;"	v	module:global_variables_mod
+avg_cash_K	global_variables.f90	/^    real(8)::avg_I_K, avg_income_K,avg_equity_K,avg_d_K,avg_cash_K,/;"	v	module:global_variables_mod
+avg_d_K	global_variables.f90	/^    real(8)::avg_I_K, avg_income_K,avg_equity_K,avg_d_K,/;"	v	module:global_variables_mod
+avg_equity_K	global_variables.f90	/^    real(8)::avg_I_K, avg_income_K,avg_equity_K,/;"	v	module:global_variables_mod
+avg_income_K	global_variables.f90	/^    real(8)::avg_I_K, avg_income_K,/;"	v	module:global_variables_mod
+big_num	global_variables.f90	/^    real(8),parameter::big_num /;"	v	module:global_variables_mod
+calibration_estimation_mod	calibration_estimation.f90	/^module  calibration_estimation_mod$/;"	m
+data_stat	global_variables.f90	/^    real(8)::  data_stat(/;"	v	module:global_variables_mod
+delta_k	global_variables.f90	/^    real(8),parameter::      delta_k=/;"	v	module:global_variables_mod
+equitycost	functions.f90	/^function equitycost(/;"	f	module:functions_mod
+equitycost_fd	functions.f90	/^function equitycost_fd(/;"	f	module:functions_mod
+error	global_variables.f90	/^    real(8),parameter::error /;"	v	module:global_variables_mod
+eta	global_variables.f90	/^    real(8),parameter::   eta=/;"	v	module:global_variables_mod
+eye_mat	functions.f90	/^function eye_mat(/;"	f	module:functions_mod
+firm_finance	main.f90	/^Program  firm_finance$/;"	p
+firmv	global_variables.f90	/^    real(8),dimension(nk,nd,nz):: firmv,/;"	v	module:global_variables_mod
+firmv_new	global_variables.f90	/^    real(8),dimension(nk,nd,nz):: firmv, firmv_new$/;"	v	module:global_variables_mod
+functions_mod	functions.f90	/^module functions_mod$/;"	m
+gamma_k	global_variables.f90	/^    real(8),parameter::   gamma_k=/;"	v	module:global_variables_mod
+global_variables_mod	global_variables.f90	/^module global_variables_mod$/;"	m
+grids_mod	grids.f90	/^module grids_mod$/;"	m
+indicatorfunc	functions.f90	/^function indicatorfunc(/;"	f	module:functions_mod
+indicatorfunc2	functions.f90	/^function indicatorfunc2(/;"	f	module:functions_mod
+inside_howard_times	global_variables.f90	/^    integer,parameter::inside_howard_times=/;"	v	module:global_variables_mod
+inside_vf_times	global_variables.f90	/^    integer,parameter::inside_vf_times=/;"	v	module:global_variables_mod
+k_adjustmentcost	functions.f90	/^function k_adjustmentcost(/;"	f	module:functions_mod
+keep_period	global_variables.f90	/^    integer,parameter::keep_period=/;"	v	module:global_variables_mod
+kss	global_variables.f90	/^    real(8)::kss,/;"	v	module:global_variables_mod
+lamda1	global_variables.f90	/^    real(8),parameter::   lamda1=/;"	v	module:global_variables_mod
+lamda2	global_variables.f90	/^    real(8),parameter::   lamda2=/;"	v	module:global_variables_mod
+lin_reg	policy_to_mm.f90	/^    subroutine lin_reg(/;"	s	module:policy_to_mm
+lininterp1	LinInterpModule.f90	/^    real(8) function lininterp1(/;"	f	module:LinInterpModule
+lininterp2	LinInterpModule.f90	/^    real(8) function lininterp2(/;"	f	module:LinInterpModule
+lininterp3	LinInterpModule.f90	/^    real(8) function lininterp3(/;"	f	module:LinInterpModule
+lininterp4	LinInterpModule.f90	/^    real(8) function lininterp4(/;"	f	module:LinInterpModule
+lininterp5	LinInterpModule.f90	/^    real(8) function lininterp5(/;"	f	module:LinInterpModule
+locate	LinInterpModule.f90	/^    integer function locate(/;"	f	module:LinInterpModule
+m_data	global_variables.f90	/^    real(8):: m_r_index(Nindi,3), m_r_index_new(Nindi,3),  m_data(/;"	v	module:global_variables_mod
+m_index	global_variables.f90	/^    integer::  m_index(/;"	v	module:global_variables_mod
+m_index_new	global_variables.f90	/^    integer::  m_index(Nindi), m_index_new(/;"	v	module:global_variables_mod
+m_r_index	global_variables.f90	/^    real(8):: m_r_index(/;"	v	module:global_variables_mod
+m_r_index_new	global_variables.f90	/^    real(8):: m_r_index(Nindi,3), m_r_index_new(/;"	v	module:global_variables_mod
+m_state_t	global_variables.f90	/^    real(8):: m_r_index(Nindi,3), m_r_index_new(Nindi,3),  m_data(Nindi,8), &$/;"	v	module:global_variables_mod
+make_grids	grids.f90	/^  subroutine make_grids$/;"	s	module:grids_mod
+mm_stat	global_variables.f90	/^    real(8)::  mm_stat(/;"	v	module:global_variables_mod
+mm_t	global_variables.f90	/^        m_state_t(Nindi,keep_period+1,3),  mm_t(/;"	v	module:global_variables_mod
+mm_to_print	policy_to_mm.f90	/^    subroutine mm_to_print$/;"	s	module:policy_to_mm
+moment_iterate_ss	policy_to_mm.f90	/^    subroutine  moment_iterate_ss$/;"	s	module:policy_to_mm
+nd	global_variables.f90	/^    integer,parameter::   nd=/;"	v	module:global_variables_mod
+ndp	global_variables.f90	/^    integer,parameter::   ndp=/;"	v	module:global_variables_mod
+nk	global_variables.f90	/^    integer,parameter::   nk=/;"	v	module:global_variables_mod
+nkp	global_variables.f90	/^    integer,parameter::   nkp=/;"	v	module:global_variables_mod
+normal_01_cdf	tauchen_mod.f90	/^subroutine normal_01_cdf /;"	s	module:TauchenMod
+nz	global_variables.f90	/^    integer,parameter::  nz=/;"	v	module:global_variables_mod
+nz_big	global_variables.f90	/^    integer,parameter::  nz_big=/;"	v	module:global_variables_mod
+one_step_dist_update	policy_to_mm.f90	/^    subroutine  one_step_dist_update /;"	s	module:policy_to_mm
+panel_mm_calculate	policy_to_mm.f90	/^    subroutine  panel_mm_calculate$/;"	s	module:policy_to_mm
+pho_income	global_variables.f90	/^    real(8)::  mm_stat(8,2),pho_income,/;"	v	module:global_variables_mod
+pho_z	global_variables.f90	/^    real(8),parameter::   pho_z=/;"	v	module:global_variables_mod
+pol_debtp	global_variables.f90	/^    real(8),dimension(nk,nd,nz):: pol_k,  pol_debtp,/;"	v	module:global_variables_mod
+pol_equity	global_variables.f90	/^    real(8),dimension(nk,nd,nz):: pol_k,  pol_debtp, pol_equity$/;"	v	module:global_variables_mod
+pol_k	global_variables.f90	/^    real(8),dimension(nk,nd,nz):: pol_k,/;"	v	module:global_variables_mod
+policy_to_mm	policy_to_mm.f90	/^module policy_to_mm$/;"	m
+rrate	global_variables.f90	/^    real(8),parameter::      rrate=/;"	v	module:global_variables_mod
+sig_e	global_variables.f90	/^    real(8)::   sig_e /;"	v	module:global_variables_mod
+sig_income_error	global_variables.f90	/^    real(8)::  mm_stat(8,2),pho_income, sig_income_error$/;"	v	module:global_variables_mod
+solve_v	solve_values.f90	/^    subroutine solve_v /;"	s	module:solve_values_ss_mod
+solve_v2	solve_values.f90	/^    subroutine  solve_v2 /;"	s	module:solve_values_ss_mod
+solve_values_ss_mod	solve_values.f90	/^module solve_values_ss_mod /;"	m
+sum_stat	policy_to_mm.f90	/^    subroutine sum_stat(/;"	s	module:policy_to_mm
+tax_c	global_variables.f90	/^    real(8),parameter::      tax_c=/;"	v	module:global_variables_mod
+theta	global_variables.f90	/^    real(8),parameter::   theta=/;"	v	module:global_variables_mod
+threadnum	global_variables.f90	/^    integer,parameter::threadnum /;"	v	module:global_variables_mod
+value_v_print	solve_values.f90	/^    subroutine value_v_print$/;"	s	module:solve_values_ss_mod
+value_v_read	solve_values.f90	/^    subroutine value_v_read$/;"	s	module:solve_values_ss_mod
+vec_d	global_variables.f90	/^    real(8)::kss, vec_k(nk), vec_d(/;"	v	module:global_variables_mod
+vec_dp	global_variables.f90	/^    real(8):: vec_kp(nkp), vec_dp(/;"	v	module:global_variables_mod
+vec_k	global_variables.f90	/^    real(8)::kss, vec_k(/;"	v	module:global_variables_mod
+vec_kp	global_variables.f90	/^    real(8):: vec_kp(/;"	v	module:global_variables_mod
+vec_z	global_variables.f90	/^    real(8)::kss, vec_k(nk), vec_d(nd), vec_z(/;"	v	module:global_variables_mod
+vec_zb	global_variables.f90	/^    real(8)::kss, vec_k(nk), vec_d(nd), vec_z(nz), Tran_z(nz,nz), vec_zb(/;"	v	module:global_variables_mod

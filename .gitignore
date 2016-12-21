@@ -1,0 +1,9 @@
+*.mod
+*.txt
+*.sh
+*.xml
+*.exe
+Makefile
+src2/
+object/
+
