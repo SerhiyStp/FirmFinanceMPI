@@ -12,6 +12,7 @@ Program  firm_finance
     implicit none
     integer :: i
     integer :: ik, id, iz
+    integer :: ier
 
     !CALL OMP_SET_NUM_THREADS(threadnum)
 
@@ -41,18 +42,15 @@ Program  firm_finance
     itop = my_rank*nii + 1
     iend = min((my_rank+1)*nii, ni)
     print *, 'Process ', my_rank, ' will solve nodes ', itop, ':', iend
-    allocate(firmv_loc(nii), firmv_agg(nii*nproc))
-    allocate(pol_k_loc(nii), pol_k_agg(nii*nproc))
-    allocate(pol_d_loc(nii), pol_d_agg(nii*nproc))
-    allocate(pol_e_loc(nii), pol_e_agg(nii*nproc))
+
     if (my_rank == idmaster .and. scr_id .ne. 6) open(scr_id, file='results_screen.txt')
 
     call Main_ss_cali
 
-    deallocate(firmv_loc, firmv_agg, pol_k_loc, pol_k_agg, &
-        pol_d_loc, pol_d_agg, pol_e_loc, pol_e_agg)
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
 
     if (my_rank == idmaster .and. scr_id .ne. 6) close(scr_id)
+
     call MPI_Finalize(ierr)
 
 end  Program firm_finance

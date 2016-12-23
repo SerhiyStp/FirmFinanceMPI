@@ -17,11 +17,12 @@ contains
 
         integer:: ik, id, iz,ikp, idp,inx12(2), izp
         real(8):: k,dd,zlevel,kp,ddp,equity,tempconti, temp,nextfv
-        real (8), ALLOCATABLE ::  tempmatrix(:,:),  tempmatrix2(:,:,:)
+        !real (8), ALLOCATABLE ::  tempmatrix(:,:),  tempmatrix2(:,:,:)
+        real (8) ::  tempmatrix(nkp,ndp),  tempmatrix2(nkp,ndp,nz)
         integer :: iloc
         integer :: last_iter
 
-        allocate( tempmatrix(nkp,ndp), tempmatrix2(nkp,ndp,nz))
+        !allocate( tempmatrix(nkp,ndp), tempmatrix2(nkp,ndp,nz))
 
         if (my_rank == idmaster) write(scr_id, *), 'starting to interpolate'
 
@@ -74,14 +75,11 @@ contains
             enddo
 
             temp=maxval(tempmatrix);
-            !firmv_new(ik,id,iz)=temp; 
             firmv_loc(iloc-itop+1) = temp
             inx12=maxloc(tempmatrix);
             ikp=inx12(1);
             idp=inx12(2);
-            !pol_k(ik,id,iz)=vec_kp(ikp);
             pol_k_loc(iloc-itop+1) = vec_kp(ikp)
-            !pol_debtp(ik,id,iz)=vec_dp(idp);
             pol_d_loc(iloc) = vec_dp(idp)
             kp=vec_kp(ikp);
             ddp=vec_dp(idp); !ddp is for debt in the next period
@@ -90,7 +88,6 @@ contains
                 - dd*(1.0+rrate*(1.0-tax_c)) - (kp-(1-delta_k)*k) - &
                 k_adjustmentcost(k,kp) + eta*ddp*indicatorfunc(ddp)
 
-            !pol_equity(ik,id,iz)=equity;
             pol_e_loc(iloc-itop+1) = equity
             !enddo
             !enddo
@@ -108,22 +105,6 @@ contains
             call MPI_ALLGATHER(pol_e_loc(1), nii, MPI_DOUBLE_PRECISION, &
                 pol_equity(1,1,1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
         end if
-
-        !call MPI_ALLGATHER(firmv_loc(1), nii, MPI_DOUBLE_PRECISION, &
-            !firmv_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
-        !call MPI_ALLGATHER(pol_k_loc(1), nii, MPI_DOUBLE_PRECISION, &
-            !pol_k_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
-        !call MPI_ALLGATHER(pol_d_loc(1), nii, MPI_DOUBLE_PRECISION, &
-            !pol_d_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
-        !call MPI_ALLGATHER(pol_e_loc(1), nii, MPI_DOUBLE_PRECISION, &
-            !pol_e_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
-
-        !firmv_new = reshape(firmv_agg, (/nk, nd, nz/))
-        !pol_k = reshape(pol_k_agg, (/nk, nd, nz/))
-        !pol_debtp = reshape(pol_d_agg, (/nk, nd, nz/))
-        !pol_equity = reshape(pol_e_agg, (/nk, nd, nz/))
-
-        deallocate( tempmatrix, tempmatrix2 )
 
     end subroutine solve_v  
 

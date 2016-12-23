@@ -50,10 +50,14 @@ module global_variables_mod
     integer :: i_k(ni), i_d(ni), i_z(ni)
     integer :: kdz_i(nk,nd,nz)
 
-    real(8), allocatable :: firmv_loc(:), firmv_agg(:)
-    real(8), allocatable :: pol_k_loc(:), pol_k_agg(:)
-    real(8), allocatable :: pol_d_loc(:), pol_d_agg(:)
-    real(8), allocatable :: pol_e_loc(:), pol_e_agg(:)
+    !real(8), allocatable :: firmv_loc(:), firmv_agg(:)
+    real(8) :: firmv_loc(ni)
+    !real(8), allocatable :: pol_k_loc(:), pol_k_agg(:)
+    real(8) :: pol_k_loc(ni)
+    !real(8), allocatable :: pol_d_loc(:), pol_d_agg(:)
+    real(8) :: pol_d_loc(ni)
+    !real(8), allocatable :: pol_e_loc(:), pol_e_agg(:)
+    real(8) :: pol_e_loc(ni)
 
     !vectors
     real(8)::kss, vec_k(nk), vec_d(nd), vec_z(nz), Tran_z(nz,nz), &

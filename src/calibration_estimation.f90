@@ -21,11 +21,11 @@ contains
         sig_e=0.15+0.08*(4-1);
         call make_grids 
         call solve_v2 
-        if (my_rank == idmaster) print *, 'Entering moment_iterate_ss'
+        !if (my_rank == idmaster) print *, 'Entering moment_iterate_ss'
         call moment_iterate_ss
-        if (my_rank == idmaster) print *, 'Entering panel_mm_calculate'
+        !if (my_rank == idmaster) print *, 'Entering panel_mm_calculate'
         call panel_mm_calculate
-        if (my_rank == idmaster) print *, 'Entering panel_mm_to_print'
+        !if (my_rank == idmaster) print *, 'Entering panel_mm_to_print'
         call mm_to_print
 
     end subroutine  Main_ss_cali
