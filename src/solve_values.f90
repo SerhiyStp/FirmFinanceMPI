@@ -10,7 +10,7 @@ module solve_values_ss_mod  !to solve all value functions at the steady state
 
 contains
 
-    subroutine solve_v  
+    subroutine solve_v(last_iter)  
         ! solve for the firm's value function; 
         ! here is just updating  the Bellman eq by one iteration, 
         ! not getting the final convergence yet. 
@@ -19,6 +19,7 @@ contains
         real(8):: k,dd,zlevel,kp,ddp,equity,tempconti, temp,nextfv
         real (8), ALLOCATABLE ::  tempmatrix(:,:),  tempmatrix2(:,:,:)
         integer :: iloc
+        integer :: last_iter
 
         allocate( tempmatrix(nkp,ndp), tempmatrix2(nkp,ndp,nz))
 
@@ -98,18 +99,29 @@ contains
         !$omp end parallel do
 
         call MPI_ALLGATHER(firmv_loc(1), nii, MPI_DOUBLE_PRECISION, &
-            firmv_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
-        call MPI_ALLGATHER(pol_k_loc(1), nii, MPI_DOUBLE_PRECISION, &
-            pol_k_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
-        call MPI_ALLGATHER(pol_d_loc(1), nii, MPI_DOUBLE_PRECISION, &
-            pol_d_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
-        call MPI_ALLGATHER(pol_e_loc(1), nii, MPI_DOUBLE_PRECISION, &
-            pol_e_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+            firmv_new(1,1,1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+        if (last_iter == 1) then
+            call MPI_ALLGATHER(pol_k_loc(1), nii, MPI_DOUBLE_PRECISION, &
+                pol_k(1,1,1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+            call MPI_ALLGATHER(pol_d_loc(1), nii, MPI_DOUBLE_PRECISION, &
+                pol_debtp(1,1,1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+            call MPI_ALLGATHER(pol_e_loc(1), nii, MPI_DOUBLE_PRECISION, &
+                pol_equity(1,1,1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+        end if
 
-        firmv_new = reshape(firmv_agg, (/nk, nd, nz/))
-        pol_k = reshape(pol_k_agg, (/nk, nd, nz/))
-        pol_debtp = reshape(pol_d_agg, (/nk, nd, nz/))
-        pol_equity = reshape(pol_e_agg, (/nk, nd, nz/))
+        !call MPI_ALLGATHER(firmv_loc(1), nii, MPI_DOUBLE_PRECISION, &
+            !firmv_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+        !call MPI_ALLGATHER(pol_k_loc(1), nii, MPI_DOUBLE_PRECISION, &
+            !pol_k_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+        !call MPI_ALLGATHER(pol_d_loc(1), nii, MPI_DOUBLE_PRECISION, &
+            !pol_d_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+        !call MPI_ALLGATHER(pol_e_loc(1), nii, MPI_DOUBLE_PRECISION, &
+            !pol_e_agg(1), nii, MPI_DOUBLE_PRECISION, MPI_COMM_WORLD, ierr)
+
+        !firmv_new = reshape(firmv_agg, (/nk, nd, nz/))
+        !pol_k = reshape(pol_k_agg, (/nk, nd, nz/))
+        !pol_debtp = reshape(pol_d_agg, (/nk, nd, nz/))
+        !pol_equity = reshape(pol_e_agg, (/nk, nd, nz/))
 
         deallocate( tempmatrix, tempmatrix2 )
 
@@ -138,11 +150,12 @@ contains
         pol_debtp=0.0;  
         pol_equity=0.0;  
 
+        if (my_rank == idmaster) print *, 'NumIter = ', NumIter
         find_values: do
             if (my_rank == idmaster) write(scr_id, *), 'count1,  Start VF interation ',  count1, temp_metric1
             firmv=firmv_new 
             time_start = MPI_Wtime()
-            call solve_v 
+            call solve_v(0) 
             time_finish = MPI_Wtime()
             if (my_rank == idmaster) write(scr_id, '(a, f20.1, a)'), 'elapsed time: ', time_finish - time_start, ' seconds'
             ! firmv is not updated there, but  firmv_new  is the updated VF
@@ -152,6 +165,7 @@ contains
             end if
             count1 = count1 + 1      
         end do find_values
+        call solve_v(1) 
         if (my_rank == idmaster) call  value_v_print
     end subroutine solve_v2 
 

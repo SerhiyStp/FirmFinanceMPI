@@ -16,17 +16,20 @@ module global_variables_mod
 
     !save
 
-    real(8),parameter::error = 1.0e-5
+    !real(8),parameter::error = 1.0e-5
+    real(8),parameter::error = 1.0e-3
     real(8),parameter::big_num = 100000000.
 
     integer,parameter::threadnum =36 ! thread num 
-    integer,parameter:: NumIter=1500; ! for the maximal times of   value function iteration 
+    !integer,parameter:: NumIter=1500; ! for the maximal times of   value function iteration 
+    integer,parameter:: NumIter=2 ! for the maximal times of   value function iteration 
     integer,parameter::inside_vf_times= 20 ! inside VF iteration times
     integer,parameter::inside_howard_times= 10 ! inside Howard iteration times
 
 
     integer,parameter::TimeLast=1000      !!! assume at this period, reaches steady state
-    integer,parameter::Nindi=50000    !!! numbe of individual firms to simulate
+    !integer,parameter::Nindi=50000    !!! numbe of individual firms to simulate
+    integer,parameter::Nindi=1000    !!! numbe of individual firms to simulate
     integer,parameter::keep_period=50;  !after long periods of simulation, keep a short panel
 
 

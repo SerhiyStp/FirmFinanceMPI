@@ -3,6 +3,7 @@
 *.sh
 *.xml
 *.exe
+fort.*
 Makefile
 src2/
 object/

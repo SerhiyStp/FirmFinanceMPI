@@ -1,7 +1,5 @@
 module policy_to_mm
 
-
-
     use global_variables_mod
     use LinInterpModule
     use functions_mod
@@ -255,7 +253,7 @@ contains
         ! m_data(i,4)=k**theta*zlevel*Az/k; !firm income      m_data(i,5)=max(dd,0.0)/k; !leverage                   m_data(i,6)=max(-dd,0.0)/k; ! cash
         ! means of k, mean of y  
 
-        data_stat=9999;
+        data_stat=0.0;
         data_stat(1,1)=0.0407;
         data_stat(2,1)= 0.1868 ;  
         data_stat(3,1)= 3.67 ;  
@@ -268,41 +266,42 @@ contains
 
 
         if (my_rank == idmaster) then
-            open(unit=13, file='final_mm.txt',status='OLD',iostat=ierror, position='Append')
-            write(13,*) 'Indionsyncratic Volatility: std', sig_e
+            !open(unit=13, file='final_mm.txt',status='OLD',iostat=ierror, position='Append')
+            open(11, file='final_mm.txt')
+            write(11,*) 'Indionsyncratic Volatility: std', sig_e
             WRITE(*,*)
             WRITE(*,*)
 
-            write(13,*) '************ Data moment and Model moment***************'  
+            write(11,*) '************ Data moment and Model moment***************'  
 
-            write(13,52) 'Data:Mean', 'equity/k', 'I/K', 'Tobin Q', 'income/K', &
+            write(11,'(9A14)') 'Data:Mean', 'equity/k', 'I/K', 'Tobin Q', 'income/K', &
                 'Debt/k', 'cash/k', 'k', 'y'      
-            write(13,51)'Data:Mean',  data_stat(:,1)
-            write(13,51)'Model:Mean',  mm_stat(:,1)   ! the means for 8 var
+            write(11,"(a14,8f14.5)"), 'Data:Mean',  data_stat(:,1)
+            write(11,"(a14,8f14.5)"), 'Model:Mean',  mm_stat(:,1)   ! the means for 8 var
             WRITE(*,*)
             WRITE(*,*)
 
-            write(13,52) 'Data:Variance', 'equity/k', 'I/K', 'Tobin Q', 'income/K',&
+            write(11,'(9A14)'), 'Data:Variance', 'equity/k', 'I/K', 'Tobin Q', 'income/K',&
                 'Debt/k', 'cash/k', 'k', 'y'     
-            write(13,51)'Data:Variance',  data_stat(:,2) 
-            write(13,51)'Model:Variance',  mm_stat(:,2)   ! the means for 8 var
+            write(11,"(a14,8f14.5)"), 'Data:Variance',  data_stat(:,2) 
+            write(11,"(a14,8f14.5)"), 'Model:Variance',  mm_stat(:,2)   ! the means for 8 var
             WRITE(*,*)
             WRITE(*,*)     
-            write(13,*) 'pho_income/k       ', 'variance of innovation to income/k'
-            write(13,*) 0.6635, 0.0048 
-            write(13,*)  pho_income, sig_income_error        
-            !write(13,*) '************Means, Variances, pho, errors***************'    
-            !write(13,1) sig_e
-            !write(13,1) mm_stat(:,1) ! the means for six var
-            !write(13,1) mm_stat(:,2)! the variances for six var
-            !write(13,1) pho_income, sig_income_error
-            close(13)
+            write(11,*) 'pho_income/k       ', 'variance of innovation to income/k'
+            write(11,*) 0.6635, 0.0048 
+            write(11,*)  pho_income, sig_income_error        
+            !write(11,*) '************Means, Variances, pho, errors***************'    
+            !write(11,1) sig_e
+            !write(11,1) mm_stat(:,1) ! the means for six var
+            !write(11,1) mm_stat(:,2)! the variances for six var
+            !write(11,1) pho_income, sig_income_error
+            close(11)
         end if
 
-        51         format(A14,  8f14.5)
-        52         format(9A14)
-        ! 53   format(2A14)
-        1   format(1f10.5)  
+        !51         format(A14,  8f14.5)
+        !52         format(9A14)
+        !! 53   format(2A14)
+        !1   format(1f10.5)  
     end subroutine mm_to_print
 
 
