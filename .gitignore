@@ -3,8 +3,9 @@
 *.sh
 *.xml
 *.exe
+*.out
 fort.*
-Makefile
+#Makefile
 src2/
 object/
 
